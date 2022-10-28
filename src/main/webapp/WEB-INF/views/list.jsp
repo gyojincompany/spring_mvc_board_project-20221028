@@ -19,13 +19,15 @@
 			<th>조회수</th>
 		</tr>
 		
+		<c:forEach items="${list }" var="bdto">
 		<tr height="30" align="center">
-			<td>1</td>
-			<td>홍길동</td>
-			<td align="left">안녕하세요! 가입인사드립니다.</td>
-			<td>2022-10-28 20:18:30</td>
-			<td>13</td>
-		</tr>	
+			<td>${bdto.bid }</td>
+			<td>${bdto.bname }</td>
+			<td align="left">${bdto.btitle }</td>
+			<td>${bdto.bdate }</td>
+			<td>${bdto.bhit }</td>
+		</tr>
+		</c:forEach>	
 		
 		<tr height="30">
 			<td colspan="5" align="right"><input type="button" value="글쓰기" onclick="javascript:window.location='write_form'"></td>
