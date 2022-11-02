@@ -300,5 +300,48 @@ public class BoardDao {
 		}
 		
 	}
+	
+	public int board_count() {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		int count = 0;
+		
+		try {
+			conn = dataSource.getConnection();
+			String sql = "SELECT * FROM mvc_board";
+			//게시글 번호의 내림차순 정렬(최근글이 가장 위에 오도록 함)
+			pstmt = conn.prepareStatement(sql);//sql문 객체 생성
+			rs = pstmt.executeQuery();//SQL을 실행하여 결과값을 반환
+			
+			while(rs.next()) {
+				count = count + 1;
+			}				
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			try {
+				if(rs != null) {
+					rs.close();
+				}
+				if(pstmt != null) {
+					pstmt.close();
+				}
+				if(conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		return count;
+		
+	}
 
 }

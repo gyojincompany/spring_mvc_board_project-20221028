@@ -19,7 +19,9 @@
 			<th>조회수</th>
 		</tr>
 		
-		<c:forEach items="${list }" var="bdto">
+		총 게시글 수 : ${boardCount }개
+		
+		<c:forEach items="${list }" var="bdto">		
 		<tr height="30" align="center">
 			<td>${bdto.bid }</td>
 			<td>${bdto.bname }</td>
