@@ -57,4 +57,16 @@ public class BoardController {
 		return "content_view";
 	}
 	
+	@RequestMapping(value = "modify_view")
+	public String modify_view(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentViewCommand();
+		command.excute(model);		
+		
+		
+		return "modify_view";
+	}
+	
 }
