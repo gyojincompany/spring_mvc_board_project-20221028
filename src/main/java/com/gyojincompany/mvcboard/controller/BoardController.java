@@ -11,6 +11,7 @@ import com.gyojincompany.mvcboard.command.BContentViewCommand;
 import com.gyojincompany.mvcboard.command.BDeleteCommand;
 import com.gyojincompany.mvcboard.command.BListCommand;
 import com.gyojincompany.mvcboard.command.BModifyCommand;
+import com.gyojincompany.mvcboard.command.BReplyCommand;
 import com.gyojincompany.mvcboard.command.BWriteCommand;
 
 @Controller
@@ -88,6 +89,28 @@ public class BoardController {
 		
 		command = new BDeleteCommand();
 		command.excute(model);			
+		
+		return "redirect:list";
+	}
+	
+	@RequestMapping(value = "reply_write")
+	public String reply_write(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BContentViewCommand();//원 글 내용 불러오기
+		command.excute(model);	
+		
+		return "reply_write";
+	}
+	
+	@RequestMapping(value = "reply")
+	public String reply(HttpServletRequest request, Model model) {
+		
+		model.addAttribute("request", request);
+		
+		command = new BReplyCommand();//댓글 새로 쓰기(DB에 새글 삽입)
+		command.excute(model);	
 		
 		return "redirect:list";
 	}
